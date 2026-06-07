@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Specialist Login - OsteoAI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .login-wrap {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .login-card {
+            width: 100%;
+            max-width: 440px;
+            padding: 40px;
+            text-align: center;
+        }
+        .badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(0, 210, 255, 0.1);
+            color: var(--primary);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            border: 1px solid rgba(0, 210, 255, 0.2);
+        }
+        .logo-box {
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+
+    <div class="login-wrap">
+        <div class="glass-card login-card">
+            <div class="badge">PRO PORTAL</div>
+            <div class="logo-box">
+                <svg viewBox="0 0 24 24" fill="none" style="width: 50px; height: 50px; margin: 0 auto;">
+                    <path d="M18.5 5.5C19.8807 5.5 21 6.61929 21 8C21 8.92131 20.5015 9.72621 19.7497 10.1506C20.5015 10.575 21 11.3799 21 12.3012C21 13.6819 19.8807 14.8012 18.5 14.8012C18.1065 14.8012 17.7342 14.7103 17.4063 14.5492L14.7673 17.7027C15.1107 18.0673 15.3188 18.5582 15.3188 19.1C15.3188 20.4807 14.1995 21.6 12.8188 21.6C11.8975 21.6 11.0926 21.1015 10.6682 20.3497C10.2438 21.1015 9.4389 21.6 8.51759 21.6C7.13688 21.6 6.01758 20.4807 6.01758 19.1C6.01758 18.5582 6.22572 18.0673 6.56911 17.7027L3.93006 14.5492C3.60218 14.7103 3.23005 14.8012 2.83643 14.8012C1.45572 14.8012 0.336426 13.6819 0.336426 12.3012C0.336426 11.3799 0.834907 10.575 1.58668 10.1506C0.834907 9.72621 0.336426 8.92131 0.336426 8C0.336426 6.61929 1.45572 5.5 2.83643 5.5C3.23005 5.5 3.60218 5.59089 3.93006 5.75199L6.56911 2.5985C6.22572 2.23389 6.01758 1.743 6.01758 1.20121C6.01758 -0.179495 7.13688 -1.29879 8.51759 -1.29879C9.4389 -1.29879 10.2438 -0.800311 10.6682 -0.0485363C11.0926 -0.800311 11.8975 -1.29879 12.8188 -1.29879C14.1995 -1.29879 15.3188 -0.179495 15.3188 1.20121C15.3188 1.743 15.1107 2.23389 14.7673 2.5985L17.4063 5.75199C17.7342 5.59089 18.1065 5.5 18.5 5.5Z" fill="url(#paint0_linear)"/>
+                    <defs>
+                        <linearGradient id="paint0_linear" x1="0.336426" y1="10.1506" x2="21" y2="10.1506" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#00d2ff"/>
+                            <stop offset="1" stop-color="#3a7bd5"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+
+            <h2 class="gradient-text" style="font-size: 1.8rem; margin-bottom: 10px;">Specialist Sign In</h2>
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 30px;">Access the clinical diagnostics dashboard.</p>
+
+            <form id="login-form">
+                <div class="input-group">
+                    <label>Professional ID / Email</label>
+                    <input type="text" id="email" placeholder="dr.smith@osteoai.com" required>
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                </div>
+
+                <a href="index.html" class="btn btn-primary" style="width: 100%; margin-top: 10px;">
+                    Enter Console →
+                </a>
+            </form>
+
+            <div style="margin-top: 25px; font-size: 0.85rem; color: var(--text-muted);">
+                Authorized personnel only. Secure clinical environment.
+            </div>
+        </div>
+    </div>
+</body>
+</html>

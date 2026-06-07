@@ -20,6 +20,7 @@
                     <li class="active" data-tab="health"><a href="#"><span class="icon">⚡</span> System Health</a></li>
                     <li data-tab="users"><a href="#"><span class="icon">👥</span> User Management</a></li>
                     <li data-tab="config"><a href="#"><span class="icon">🛠️</span> Project Config</a></li>
+                    <li data-tab="features"><a href="#"><span class="icon">🔘</span> Feature Control</a></li>
                     <li data-tab="logs"><a href="#"><span class="icon">📋</span> ML Logs</a></li>
                 </ul>
             </nav>
@@ -115,6 +116,51 @@
                             <!-- Populated by JS -->
                         </tbody>
                     </table>
+                </div>
+            </section>
+
+            <!-- Features Tab -->
+            <section id="features-section" class="tab-content">
+                <div class="card control-card">
+                    <div class="card-header">
+                        <h3>Master Feature Switches</h3>
+                        <p class="subtitle">Instantly pause or resume specific application modules.</p>
+                    </div>
+                    <div class="feature-controls">
+                        <div class="control-item">
+                            <div class="control-info">
+                                <h4>Clinical Risk Assessment</h4>
+                                <p>Ensemble-based prediction from tabular data.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="toggle-clinical" checked>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <div class="control-item">
+                            <div class="control-info">
+                                <h4>X-ray Texture Analysis</h4>
+                                <p>Deep learning analysis of uploaded images.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="toggle-xray" checked>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <div class="control-item">
+                            <div class="control-info">
+                                <h4>Appointment Booking</h4>
+                                <p>Specialist consultation scheduling system.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="toggle-appts" checked>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="card-footer" style="margin-top: 20px; text-align: right;">
+                        <button class="btn btn-primary" id="save-features">Update System Status</button>
+                    </div>
                 </div>
             </section>
 

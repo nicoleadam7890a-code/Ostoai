@@ -31,7 +31,7 @@ if not MONGO_URI:
 
 try:
     # 1. Try standard SRV connection
-    client = MongoClient(MONGO_URI, serverSelectionTimeoutMS=5000, tls=True, tlsAllowInvalidCertificates=True, tlsCAFile=certifi.where(), tlsVersion='TLS1_2')
+    client = MongoClient(MONGO_URI, serverSelectionTimeoutMS=5000, tls=True, tlsAllowInvalidCertificates=True, tlsCAFile=certifi.where())
     client.admin.command('ismaster')
     print("✅ DATABASE SYNC: Connected via SRV.")
 except Exception as e:
@@ -43,7 +43,7 @@ except Exception as e:
                          "@ac-srx5lfq-shard-00-00.1fj4mhs.mongodb.net:27017," + \
                          "ac-srx5lfq-shard-00-01.1fj4mhs.mongodb.net:27017," + \
                          "ac-srx5lfq-shard-00-02.1fj4mhs.mongodb.net:27017/osteoai?ssl=true&replicaSet=atlas-1fj4mhs-shard-0&authSource=admin"
-            client = MongoClient(direct_uri, serverSelectionTimeoutMS=5000, tls=True, tlsAllowInvalidCertificates=True, tlsCAFile=certifi.where(), tlsVersion='TLS1_2')
+            client = MongoClient(direct_uri, serverSelectionTimeoutMS=5000, tls=True, tlsAllowInvalidCertificates=True, tlsCAFile=certifi.where())
             client.admin.command('ismaster')
             print("✅ DATABASE SYNC: Connected via Direct Shards!")
         else:
@@ -71,7 +71,7 @@ import socket
 
 @app.route('/api/db/status')
 def db_status():
-    if not users_collection:
+    if users_collection is None:
         return jsonify({"status": "disconnected", "message": "MongoDB not initialized."})
     try:
         # Simple health check
@@ -124,34 +124,34 @@ def restart_main_api():
     # For now, we return a success message acknowledging the command
     return jsonify({"status": "success", "message": "Restart command sent to Main API."})
 
-@app.route('/api/config', methods=['GET', 'POST'])
-def manage_config():
+# --- System Feature Control ---
+
+SYSTEM_CONFIG_PATH = os.path.join(os.path.dirname(__file__), '..', 'system_config.json')
+
+@app.route('/api/system/config', methods=['GET', 'POST'])
+def system_config_route():
     if request.method == 'GET':
-        config = {}
-        if os.path.exists(dotenv_path):
-            with open(dotenv_path, 'r') as f:
-                for line in f:
-                    if '=' in line:
-                        key, val = line.strip().split('=', 1)
-                        config[key] = val
-        return jsonify(config)
+        if os.path.exists(SYSTEM_CONFIG_PATH):
+            with open(SYSTEM_CONFIG_PATH, 'r') as f:
+                config = json.load(f)
+            return jsonify(config)
+        return jsonify({"clinical_analysis": True, "xray_analysis": True, "appointments": True})
     else:
         new_config = request.json
-        with open(dotenv_path, 'w') as f:
-            for key, val in new_config.items():
-                f.write(f"{key}={val}\n")
-        return jsonify({"status": "success", "message": "Config updated"})
+        with open(SYSTEM_CONFIG_PATH, 'w') as f:
+            json.dump(new_config, f, indent=2)
+        return jsonify({"status": "success", "message": "System features updated"})
 
 @app.route('/api/users', methods=['GET'])
 def get_users():
-    if not users_collection:
+    if users_collection is None:
         return jsonify({"error": "Database not connected"}), 500
     users = list(users_collection.find({}, {"_id": 0, "password": 0}))
     return jsonify(users)
 
 @app.route('/api/predictions/stats')
 def prediction_stats():
-    if not predictions_collection:
+    if predictions_collection is None:
         return jsonify({"total": 0, "high_risk": 0, "low_risk": 0})
     total = predictions_collection.count_documents({})
     high_risk = predictions_collection.count_documents({"prediction": 1})
@@ -164,7 +164,7 @@ def prediction_stats():
 
 @app.route('/api/predictions/logs')
 def get_prediction_logs():
-    if not predictions_collection:
+    if predictions_collection is None:
         return jsonify([])
     limit = int(request.args.get('limit', 50))
     logs = list(predictions_collection.find().sort("_id", -1).limit(limit))
@@ -173,5 +173,5 @@ def get_prediction_logs():
     return jsonify(logs)
 
 if __name__ == '__main__':
-    print(f"Admin Dashboard starting on http://localhost:8001")
-    app.run(port=8001, debug=True)
+    print(f"Admin Dashboard starting on http://localhost:8002")
+    app.run(port=8002, debug=True)

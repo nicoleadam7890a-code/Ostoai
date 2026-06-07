@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Specialist Console - OsteoAI Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 40px;
+        }
+        .user-tag {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--surface);
+            padding: 8px 16px;
+            border-radius: 50px;
+            border: 1px solid var(--surface-border);
+        }
+        .user-tag div {
+            width: 32px;
+            height: 32px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+        }
+        .report-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 12px;
+            margin-top: 20px;
+        }
+        .report-table th {
+            text-align: left;
+            padding: 10px 20px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .report-table td {
+            background: var(--surface);
+            padding: 20px;
+            border-top: 1px solid var(--surface-border);
+            border-bottom: 1px solid var(--surface-border);
+        }
+        .report-table tr td:first-child {
+            border-left: 1px solid var(--surface-border);
+            border-top-left-radius: 12px;
+            border-bottom-left-radius: 12px;
+        }
+        .report-table tr td:last-child {
+            border-right: 1px solid var(--surface-border);
+            border-top-right-radius: 12px;
+            border-bottom-right-radius: 12px;
+        }
+        .status-pill {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .status-danger { background: rgba(255, 95, 86, 0.15); color: #ff5f56; }
+        .status-warning { background: rgba(255, 189, 46, 0.15); color: #ffbd2e; }
+        .status-safe { background: rgba(39, 201, 63, 0.15); color: #27c93f; }
+    </style>
+</head>
+<body>
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+
+    <nav class="navbar">
+        <div class="logo">
+            <svg viewBox="0 0 24 24" fill="none" style="width: 32px; height: 32px;">
+                <path d="M18.5 5.5C19.8807 5.5 21 6.61929 21 8C21 8.92131 20.5015 9.72621 19.7497 10.1506C20.5015 10.575 21 11.3799 21 12.3012C21 13.6819 19.8807 14.8012 18.5 14.8012" stroke="url(#logo_grad)" stroke-width="2" stroke-linecap="round"/>
+                <defs><linearGradient id="logo_grad"><stop stop-color="#00d2ff"/><stop offset="1" stop-color="#3a7bd5"/></linearGradient></defs>
+            </svg>
+            <span class="gradient-text">OsteoAI <span style="font-weight: 300;">Pro</span></span>
+        </div>
+        <div class="user-tag">
+            <span>Dr. Aditya Gupta</span>
+            <div>A</div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="header-content">
+            <div>
+                <h1 style="font-size: 2.5rem; margin-bottom: 8px;">Clinical Dashboard</h1>
+                <p style="color: var(--text-muted);">Real-time patient diagnostics and risk assessments.</p>
+            </div>
+            <button class="btn btn-primary" onclick="fetchData()">🔄 Refresh Data</button>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="glass-card stat-card">
+                <h3>Total Patients</h3>
+                <div class="value" id="stat-total">0</div>
+            </div>
+            <div class="glass-card stat-card">
+                <h3>High Risk Cases</h3>
+                <div class="value" id="stat-high-risk" style="color: #ff5f56;">0</div>
+            </div>
+            <div class="glass-card stat-card">
+                <h3>Pending Appts</h3>
+                <div class="value" id="stat-pending" style="color: var(--primary);">0</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 60px;">
+            <h2 style="margin-bottom: 24px;">Combined Patient Feed</h2>
+            <table class="report-table">
+                <thead>
+                    <tr>
+                        <th>Patient Name / ID</th>
+                        <th>Source</th>
+                        <th>Age / Details</th>
+                        <th>Risk / Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="data-table-body">
+                    <!-- Data injected here -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <!-- Detail Modal -->
+    <div id="detail-modal" class="glass-card" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; max-width: 600px; z-index: 1000; padding: 40px;">
+        <h2 class="gradient-text" id="modal-title" style="margin-bottom: 20px;">Patient Report</h2>
+        <div id="modal-body" style="font-size: 0.95rem; line-height: 1.6; max-height: 60vh; overflow-y: auto;"></div>
+        <button class="btn btn-primary" style="margin-top: 30px; width: 100%;" onclick="closeModal()">Close Detail View</button>
+    </div>
+    <div id="modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 999;" onclick="closeModal()"></div>
+
+    <script>
+        const API_BASE = 'http://localhost:8000/api/doctor';
+
+        async function fetchData() {
+            try {
+                const [apptsRes, reportsRes] = await Promise.all([
+                    fetch(`${API_BASE}/appointments`),
+                    fetch(`${API_BASE}/reports`)
+                ]);
+
+                const appts = await apptsRes.json();
+                const reports = await reportsRes.json();
+
+                renderData(appts.data, reports.data);
+            } catch (err) {
+                console.error('Fetch error:', err);
+                alert('Could not connect to the backend server. Please ensures api.py is running.');
+            }
+        }
+
+        function renderData(appts, reports) {
+            const tbody = document.getElementById('data-table-body');
+            tbody.innerHTML = '';
+
+            let highRiskCount = 0;
+            
+            // Merge and sort? or just list
+            // Process Reports (CSV)
+            reports.forEach(report => {
+                const row = document.createElement('tr');
+                const isHighRisk = report.Osteoporosis === "1" || parseInt(report.Age) > 80;
+                if (isHighRisk) highRiskCount++;
+
+                row.innerHTML = `
+                    <td style="font-weight: 600;">Patient #${report.Id || 'N/A'}</td>
+                    <td><span class="badge" style="background: rgba(0,210,255,0.1)">Clinical Analysis</span></td>
+                    <td>${report.Age}y, ${report.Gender}</td>
+                    <td style="font-weight: 800; color: ${report.Osteoporosis === "1" ? '#ff5f56' : '#27c93f'}">
+                        ${report.Osteoporosis === "1" ? 'Osteoporosis Detected' : 'Normal'}
+                    </td>
+                    <td><span class="status-pill ${report.Osteoporosis === "1" ? 'status-danger' : 'status-safe'}">Analyzed</span></td>
+                    <td><button class="btn btn-primary" style="padding: 6px 16px; font-size: 0.8rem;" onclick='showReport(${JSON.stringify(report)})'>View Details</button></td>
+                `;
+                tbody.appendChild(row);
+            });
+
+            // Process Appointments
+            appts.forEach(appt => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td style="font-weight: 600;">${appt.patient_name}</td>
+                    <td><span class="badge" style="background: rgba(39,201,63,0.1); color: #27c93f; border-color: rgba(39,201,63,0.2)">Appointment</span></td>
+                    <td>${appt.specialist_type}</td>
+                    <td>${appt.appointment_date}</td>
+                    <td><span class="status-pill status-warning">${appt.status}</span></td>
+                    <td><button class="btn btn-primary" style="padding: 6px 16px; font-size: 0.8rem;" onclick='showAppt(${JSON.stringify(appt)})'>Manage</button></td>
+                `;
+                tbody.appendChild(row);
+            });
+
+            // Update stats
+            document.getElementById('stat-total').textContent = reports.length + appts.length;
+            document.getElementById('stat-high-risk').textContent = highRiskCount;
+            document.getElementById('stat-pending').textContent = appts.length;
+        }
+
+        function showReport(data) {
+            const modal = document.getElementById('detail-modal');
+            const overlay = document.getElementById('modal-overlay');
+            const title = document.getElementById('modal-title');
+            const body = document.getElementById('modal-body');
+
+            title.textContent = `Patient Report #${data.Id}`;
+            body.innerHTML = `
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <p><strong>Age:</strong> ${data.Age}</p>
+                    <p><strong>Gender:</strong> ${data.Gender}</p>
+                    <p><strong>Race:</strong> ${data.Race || 'N/A'}</p>
+                    <p><strong>Physical Activity:</strong> ${data['Physical Activity']}</p>
+                    <p><strong>Smoking:</strong> ${data.Smoking}</p>
+                    <p><strong>Alcohol:</strong> ${data['Alcohol Consumption'] || 'N/A'}</p>
+                    <p><strong>Medical Conditions:</strong> ${data['Medical Conditions'] || 'N/A'}</p>
+                    <p><strong>Medications:</strong> ${data.Medications}</p>
+                    <p><strong>Prior Fractures:</strong> ${data['Prior Fractures']}</p>
+                </div>
+                <div style="margin-top: 20px; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 8px;">
+                    <h4 style="margin-bottom: 10px; color: var(--primary);">Assessment Detail</h4>
+                    <p>This patient was analyzed using the Clinical Ensemble (Random Forest + Logistic Regression).</p>
+                    <p style="font-weight: 800; font-size: 1.2rem; margin-top: 10px;" class="gradient-text">
+                        Result: ${data.Osteoporosis === "1" ? 'POSSIBLE OSTEOPOROSIS' : 'NORMAL / LOW RISK'}
+                    </p>
+                </div>
+            `;
+
+            modal.style.display = 'block';
+            overlay.style.display = 'block';
+        }
+
+        async function showAppt(data) {
+            const modal = document.getElementById('detail-modal');
+            const overlay = document.getElementById('modal-overlay');
+            const title = document.getElementById('modal-title');
+            const body = document.getElementById('modal-body');
+
+            title.textContent = `Consultation Management`;
+            body.innerHTML = `
+                <p><strong>Patient:</strong> ${data.patient_name}</p>
+                <p><strong>Email:</strong> ${data.patient_email}</p>
+                <p><strong>Phone:</strong> ${data.patient_phone}</p>
+                <p><strong>Type:</strong> ${data.specialist_type}</p>
+                <p><strong>Scheduled:</strong> ${data.appointment_date} at ${data.appointment_time}</p>
+                <hr style="margin: 15px 0; border: 0; border-top: 1px solid var(--surface-border);">
+                <p><strong>Notes:</strong> ${data.additional_notes || 'No notes provided.'}</p>
+                <div id="history-section" style="margin-top: 20px;">
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Loading patient history...</p>
+                </div>
+            `;
+
+            modal.style.display = 'block';
+            overlay.style.display = 'block';
+
+            // Fetch patient history
+            try {
+                const response = await fetch('http://localhost:8000/api/user/history', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ user_email: data.patient_email })
+                });
+
+                const result = await response.json();
+                const historyDiv = document.getElementById('history-section');
+
+                if (result.status === 'success' && result.data && result.data.length > 0) {
+                    let historyHtml = '<h4 style="margin-bottom: 15px; color: var(--primary);">Diagnostic History</h4><div style="display: grid; gap: 10px;">';
+                    result.data.forEach(record => {
+                        const date = new Date(record.timestamp).toLocaleDateString() + ' ' + new Date(record.timestamp).toLocaleTimeString();
+                        const isHighRisk = record.prediction.toLowerCase().includes('high') || record.prediction.toLowerCase().includes('osteoporosis');
+                        const severityColor = isHighRisk ? '#ff5f56' : '#27c93f';
+                        
+                        historyHtml += `
+                            <div style="background: rgba(255,255,255,0.03); padding: 12px; border-radius: 8px; border-left: 4px solid ${severityColor};">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                    <strong style="color: #fff;">${record.type}</strong>
+                                    <span style="font-size: 0.8rem; color: var(--text-muted);">${date}</span>
+                                </div>
+                                <div style="font-size: 0.9rem; color: #ddd;">
+                                    Prediction: <span style="font-weight: 600; color: ${severityColor};">${record.prediction}</span> 
+                                    (Score: ${record.score}%)
+                                </div>
+                            </div>
+                        `;
+                    });
+                    historyHtml += '</div>';
+                    historyDiv.innerHTML = historyHtml;
+                } else {
+                    historyDiv.innerHTML = '<h4 style="margin-bottom: 10px; color: var(--primary);">Diagnostic History</h4><p style="color: var(--text-muted); font-size: 0.9rem;">No prior history found for this patient.</p>';
+                }
+            } catch (err) {
+                console.error("Failed to fetch history:", err);
+                document.getElementById('history-section').innerHTML = '<p style="color: #ff5f56; font-size: 0.9rem;">Unable to load patient history. Server may be unreachable.</p>';
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('detail-modal').style.display = 'none';
+            document.getElementById('modal-overlay').style.display = 'none';
+        }
+
+        // Initial Load
+        window.onload = fetchData;
+    </script>
+</body>
+</html>

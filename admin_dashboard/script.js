@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (tab === 'config') loadConfig();
             if (tab === 'users') loadUsers();
             if (tab === 'logs') loadLogs();
+            if (tab === 'features') loadSystemConfig();
         });
     });
 
@@ -37,6 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Config Save
     document.getElementById('save-config')?.addEventListener('click', saveConfig);
+    
+    // Feature Save
+    document.getElementById('save-features')?.addEventListener('click', saveSystemConfig);
 
     // Restart API
     document.getElementById('restart-api')?.addEventListener('click', async () => {
@@ -57,6 +61,7 @@ function getSubtitle(tab) {
         'health': 'Real-time monitoring of OSTEO AI infrastructure',
         'users': 'Manage registered practitioners and patient profiles',
         'config': 'Modify system-wide environment variables',
+        'features': 'Master switches to pause or resume user app modules',
         'logs': 'Review application and model performance logs'
     };
     return subtitles[tab] || '';
@@ -146,6 +151,39 @@ async function saveConfig() {
         alert(result.message);
     } catch (e) {
         alert("Failed to save config");
+    }
+}
+
+async function loadSystemConfig() {
+    try {
+        const res = await fetch('/api/system/config');
+        const config = await res.json();
+        
+        document.getElementById('toggle-clinical').checked = config.clinical_analysis;
+        document.getElementById('toggle-xray').checked = config.xray_analysis;
+        document.getElementById('toggle-appts').checked = config.appointments;
+    } catch (e) {
+        console.error("Failed to load system config", e);
+    }
+}
+
+async function saveSystemConfig() {
+    const newConfig = {
+        clinical_analysis: document.getElementById('toggle-clinical').checked,
+        xray_analysis: document.getElementById('toggle-xray').checked,
+        appointments: document.getElementById('toggle-appts').checked
+    };
+
+    try {
+        const res = await fetch('/api/system/config', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(newConfig)
+        });
+        const result = await res.json();
+        alert(result.message);
+    } catch (e) {
+        alert("Failed to update system features");
     }
 }
 

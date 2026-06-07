@@ -1,0 +1,5 @@
+{
+  "clinical_analysis": true,
+  "xray_analysis": true,
+  "appointments": true
+}
