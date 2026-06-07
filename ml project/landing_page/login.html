@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Sign Up - OsteoAI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 10;
+        }
+        .login-card {
+            width: 100%;
+            max-width: 440px;
+            padding: 2.5rem;
+            text-align: center;
+        }
+        .login-card h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+        .login-card p {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+        .login-form input {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--surface-border);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        .login-form input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(0, 210, 255, 0.2);
+        }
+        .login-form button {
+            width: 100%;
+            margin-top: 1rem;
+        }
+        .toggle-mode {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        .toggle-mode a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .toggle-mode a:hover {
+            text-decoration: underline;
+        }
+        #signup-fields {
+            display: none;
+        }
+        .error-message {
+            color: #ff5f56;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    
+    <div class="login-container">
+        <div class="glass-card login-card">
+            <svg viewBox="0 0 24 24" fill="none" class="bone-icon" style="width: 48px; height: 48px; margin: 0 auto 1rem; display: block;">
+                <path d="M18.5 5.5C19.8807 5.5 21 6.61929 21 8C21 8.92131 20.5015 9.72621 19.7497 10.1506C20.5015 10.575 21 11.3799 21 12.3012C21 13.6819 19.8807 14.8012 18.5 14.8012C18.1065 14.8012 17.7342 14.7103 17.4063 14.5492L14.7673 17.7027C15.1107 18.0673 15.3188 18.5582 15.3188 19.1C15.3188 20.4807 14.1995 21.6 12.8188 21.6C11.8975 21.6 11.0926 21.1015 10.6682 20.3497C10.2438 21.1015 9.4389 21.6 8.51759 21.6C7.13688 21.6 6.01758 20.4807 6.01758 19.1C6.01758 18.5582 6.22572 18.0673 6.56911 17.7027L3.93006 14.5492C3.60218 14.7103 3.23005 14.8012 2.83643 14.8012C1.45572 14.8012 0.336426 13.6819 0.336426 12.3012C0.336426 11.3799 0.834907 10.575 1.58668 10.1506C0.834907 9.72621 0.336426 8.92131 0.336426 8C0.336426 6.61929 1.45572 5.5 2.83643 5.5C3.23005 5.5 3.60218 5.59089 3.93006 5.75199L6.56911 2.5985C6.22572 2.23389 6.01758 1.743 6.01758 1.20121C6.01758 -0.179495 7.13688 -1.29879 8.51759 -1.29879C9.4389 -1.29879 10.2438 -0.800311 10.6682 -0.0485363C11.0926 -0.800311 11.8975 -1.29879 12.8188 -1.29879C14.1995 -1.29879 15.3188 -0.179495 15.3188 1.20121C15.3188 1.743 15.1107 2.23389 14.7673 2.5985L17.4063 5.75199C17.7342 5.59089 18.1065 5.5 18.5 5.5Z" fill="url(#paint0_linear)"/>
+                <defs>
+                    <linearGradient id="paint0_linear" x1="0.336426" y1="10.1506" x2="21" y2="10.1506" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#00d2ff"/>
+                        <stop offset="1" stop-color="#3a7bd5"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+            <h2 id="form-title">Login to OsteoAI</h2>
+            <p id="form-subtitle">Welcome back! Please enter your credentials.</p>
+            
+            <div id="error-box" class="error-message"></div>
+
+            <form class="login-form" id="login-form">
+                <div id="signup-fields">
+                    <input type="text" id="username" placeholder="Your Full Name" autocomplete="name">
+                    <input type="tel" id="phone" placeholder="Phone Number" autocomplete="tel">
+                </div>
+                
+                <input type="text" id="email" placeholder="Email or Username" required autocomplete="username" autofocus>
+                <input type="password" id="password" placeholder="Password" required autocomplete="current-password">
+                
+                <button type="submit" id="submit-btn" class="btn btn-primary btn-lg btn-glow">Login →</button>
+            </form>
+            
+            <div class="toggle-mode">
+                <span id="toggle-text">Don't have an account?</span> 
+                <a id="toggle-link">Sign Up</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('login-form');
+        const formTitle = document.getElementById('form-title');
+        const formSubtitle = document.getElementById('form-subtitle');
+        const signupFields = document.getElementById('signup-fields');
+        const submitBtn = document.getElementById('submit-btn');
+        const toggleLink = document.getElementById('toggle-link');
+        const toggleText = document.getElementById('toggle-text');
+        const errorBox = document.getElementById('error-box');
+        
+        let isLoginMode = true;
+
+        toggleLink.addEventListener('click', () => {
+            isLoginMode = !isLoginMode;
+            if (isLoginMode) {
+                formTitle.textContent = 'Login to OsteoAI';
+                formSubtitle.textContent = 'Welcome back! Please enter your credentials.';
+                signupFields.style.display = 'none';
+                submitBtn.textContent = 'Login →';
+                toggleText.textContent = "Don't have an account?";
+                toggleLink.textContent = 'Sign Up';
+                document.getElementById('username').required = false;
+                document.getElementById('email').placeholder = 'Email or Username';
+                document.getElementById('password').placeholder = 'Password';
+                document.getElementById('password').autocomplete = 'current-password';
+            } else {
+                formTitle.textContent = 'Create Account';
+                formSubtitle.textContent = 'Join OsteoAI for personalized bone health insights.';
+                signupFields.style.display = 'block';
+                submitBtn.textContent = 'Create Account →';
+                toggleText.textContent = 'Already have an account?';
+                toggleLink.textContent = 'Login';
+                document.getElementById('username').required = true;
+                document.getElementById('email').placeholder = 'Email Address';
+                document.getElementById('password').placeholder = 'Create Password';
+                document.getElementById('password').autocomplete = 'new-password';
+            }
+            errorBox.style.display = 'none';
+        });
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            errorBox.style.display = 'none';
+            
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const username = document.getElementById('username').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            
+            if (!isLoginMode) {
+                const emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z][a-zA-Z0-9-]*\.[a-zA-Z0-9-.]+$/;
+                if (!emailRegex.test(email)) {
+                    errorBox.textContent = 'Please enter a valid email address format. The domain part cannot start with a number.';
+                    errorBox.style.display = 'block';
+                    return;
+                }
+                
+                const phoneRegex = /^\d{10}$/;
+                if (!phoneRegex.test(phone)) {
+                    errorBox.textContent = 'Please enter exactly a 10-digit phone number.';
+                    errorBox.style.display = 'block';
+                    return;
+                }
+            }
+            
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = isLoginMode ? 'Authenticating...' : 'Creating Account...';
+            submitBtn.disabled = true;
+            
+            const endpoint = isLoginMode ? '/login' : '/register';
+            const payload = isLoginMode 
+                ? { email, password } 
+                : { username, email, password, phone };
+            
+            try {
+                const response = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                
+                let result;
+                try {
+                    result = await response.json();
+                } catch (e) {
+                    if (response.status === 500) {
+                        throw new Error('Server encountered an error. This usually means a data inconsistency in the database.');
+                    }
+                    throw new Error('Server returned an invalid response.');
+                }
+                
+                if (!response.ok || result.status === 'error') {
+                    throw new Error(result.message || 'An unexpected error occurred.');
+                }
+                
+                // Store user info
+                const userData = result.user || { username: username || email, email: email };
+                localStorage.setItem('username', userData.username);
+                localStorage.setItem('email', userData.email);
+                if (userData.phone) localStorage.setItem('phone', userData.phone);
+                
+                window.location.href = '/index.html';
+            } catch (error) {
+                console.error('Auth error:', error);
+                errorBox.textContent = error.message || 'Could not connect to the server. Please check your connection.';
+                errorBox.style.display = 'block';
+            } finally {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
+    <div class="custom-cursor-dot"></div>
+    <div class="custom-cursor-circle"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

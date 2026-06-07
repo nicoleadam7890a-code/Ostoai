@@ -1,0 +1,14 @@
+flask
+numpy
+pandas
+joblib
+python-dotenv
+pymongo
+google-generativeai
+certifi
+fpdf
+torch
+torchvision
+pillow
+scikit-learn
+werkzeug

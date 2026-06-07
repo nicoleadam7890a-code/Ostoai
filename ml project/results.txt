@@ -1,0 +1,353 @@
+==================================================
+OSTEOAI PREDICTION MODEL RESULTS - 2026-03-29 17:11:31
+==================================================
+
+[1] ENSEMBLE MODEL PERFORMANCE (LR + RF)
+--------------------------------------------------
+Overall Accuracy: 0.9246
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.88      0.99      0.93      1020
+           1       0.98      0.86      0.92      1009
+
+    accuracy                           0.92      2029
+   macro avg       0.93      0.92      0.92      2029
+weighted avg       0.93      0.92      0.92      2029
+
+
+[2] TOP 15 FEATURE IMPORTANCE (RANDOM FOREST)
+--------------------------------------------------
+Age                                        0.493563
+Race_Caucasian                             0.019188
+Race_African American                      0.018849
+Calcium Intake_Adequate                    0.018621
+Race_Asian                                 0.018514
+Calcium Intake_Low                         0.018511
+Medical Conditions_Hyperthyroidism         0.018471
+Gender_Male                                0.018456
+Medical Conditions_Unknown                 0.018330
+Gender_Female                              0.018291
+Body Weight_Underweight                    0.018125
+Alcohol Consumption_Unknown                0.017789
+Medical Conditions_Rheumatoid Arthritis    0.017781
+Medications_Unknown                        0.017755
+Alcohol Consumption_Moderate               0.017737
+
+[3] PATIENT CLUSTERING (K-MEANS)
+--------------------------------------------------
+Number of clusters: 3
+Cluster Distribution (Counts):
+{0: 983, 1: 976, 2: 70}
+
+[4] MODEL PARAMETERS
+--------------------------------------------------
+- Random Forest: 200 estimators
+- Logistic Regression: 1000 max_iter, scaled
+- Database: MongoDB Atlas (Sync enabled)
+- Dataset: C:\Users\Aditya Gupta\OneDrive\Desktop\OSTEO AI\ml project\data\data.csv (2029 records)
+- X-ray Model: MobileNetV2 (74.62% Val Acc)
+
+[5] X-RAY ANALYSIS PERFORMANCE (CNN)
+--------------------------------------------------
+- Model Architecture: MobileNetV2 (Transfer Learning)
+- Best Validation Accuracy: 0.7462 (74.6%)
+- Target Classes: ['Normal', 'Osteopenia', 'Osteoporosis']
+- Status: Fully Integrated
+
+==================================================
+HISTORY OF PREVIOUS SESSIONS
+==================================================
+
+
+==================================================
+OSTEOAI PREDICTION MODEL RESULTS - 2026-03-29 17:11:08
+==================================================
+
+[1] ENSEMBLE MODEL PERFORMANCE (LR + RF)
+--------------------------------------------------
+Overall Accuracy: 0.9246
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.88      0.99      0.93      1020
+           1       0.98      0.86      0.92      1009
+
+    accuracy                           0.92      2029
+   macro avg       0.93      0.92      0.92      2029
+weighted avg       0.93      0.92      0.92      2029
+
+
+[2] TOP 15 FEATURE IMPORTANCE (RANDOM FOREST)
+--------------------------------------------------
+Age                                        0.493563
+Race_Caucasian                             0.019188
+Race_African American                      0.018849
+Calcium Intake_Adequate                    0.018621
+Race_Asian                                 0.018514
+Calcium Intake_Low                         0.018511
+Medical Conditions_Hyperthyroidism         0.018471
+Gender_Male                                0.018456
+Medical Conditions_Unknown                 0.018330
+Gender_Female                              0.018291
+Body Weight_Underweight                    0.018125
+Alcohol Consumption_Unknown                0.017789
+Medical Conditions_Rheumatoid Arthritis    0.017781
+Medications_Unknown                        0.017755
+Alcohol Consumption_Moderate               0.017737
+
+[3] PATIENT CLUSTERING (K-MEANS)
+--------------------------------------------------
+Number of clusters: 3
+Cluster Distribution (Counts):
+{0: 983, 1: 976, 2: 70}
+
+[4] MODEL PARAMETERS
+--------------------------------------------------
+- Random Forest: 200 estimators
+- Logistic Regression: 1000 max_iter, scaled
+- Database: MongoDB Atlas (Sync enabled)
+- Dataset: C:\Users\Aditya Gupta\OneDrive\Desktop\OSTEO AI\ml project\data\data.csv (2029 records)
+- X-ray Model: MobileNetV2 (72.82% Val Acc)
+
+[5] X-RAY ANALYSIS PERFORMANCE (CNN)
+--------------------------------------------------
+- Model Architecture: MobileNetV2 (Transfer Learning)
+- Best Validation Accuracy: 0.7282 (72.8%)
+- Target Classes: ['Normal', 'Osteopenia', 'Osteoporosis']
+- Status: Fully Integrated
+
+==================================================
+HISTORY OF PREVIOUS SESSIONS
+==================================================
+
+
+==================================================
+OSTEOAI PREDICTION MODEL RESULTS - 2026-03-24 21:00:32
+==================================================
+
+[1] ENSEMBLE MODEL PERFORMANCE (LR + RF)
+--------------------------------------------------
+Overall Accuracy: 0.9249
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.88      0.99      0.93      1000
+           1       0.99      0.86      0.92       997
+
+    accuracy                           0.92      1997
+   macro avg       0.93      0.92      0.92      1997
+weighted avg       0.93      0.92      0.92      1997
+
+
+[2] TOP 15 FEATURE IMPORTANCE (RANDOM FOREST)
+--------------------------------------------------
+Age                                        0.519250
+Medical Conditions_Unknown                 0.019650
+Family History_No                          0.018292
+Gender_Male                                0.018263
+Medical Conditions_Rheumatoid Arthritis    0.018153
+Calcium Intake_Adequate                    0.018131
+Vitamin D Intake_Sufficient                0.017784
+Medical Conditions_Hyperthyroidism         0.017779
+Calcium Intake_Low                         0.017602
+Race_Asian                                 0.017421
+Vitamin D Intake_Insufficient              0.017263
+Alcohol Consumption_Unknown                0.017236
+Race_Caucasian                             0.017200
+Prior Fractures_No                         0.017176
+Race_African American                      0.017026
+
+[3] PATIENT CLUSTERING (K-MEANS)
+--------------------------------------------------
+Number of clusters: 3
+Cluster Distribution (Counts):
+{0: 994, 1: 966, 2: 37}
+
+[4] MODEL PARAMETERS
+--------------------------------------------------
+- Random Forest: 200 estimators
+- Logistic Regression: 1000 max_iter, scaled
+- Database: MongoDB Atlas (Sync enabled)
+- Dataset: c:\Users\Aditya Gupta\OneDrive\Desktop\ml project\data\data.csv (1997 records)
+- X-ray Model: MobileNetV2 (72.82% Val Acc)
+
+[5] X-RAY ANALYSIS PERFORMANCE (CNN)
+--------------------------------------------------
+- Model Architecture: MobileNetV2 (Transfer Learning)
+- Best Validation Accuracy: 0.7282 (72.8%)
+- Target Classes: ['Normal', 'Osteopenia', 'Osteoporosis']
+- Status: Fully Integrated
+
+==================================================
+HISTORY OF PREVIOUS SESSIONS
+==================================================
+
+
+==================================================
+OSTEOAI PREDICTION MODEL RESULTS - 2026-03-24 20:59:52
+==================================================
+
+[1] ENSEMBLE MODEL PERFORMANCE (LR + RF)
+--------------------------------------------------
+Overall Accuracy: 0.9249
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.88      0.99      0.93      1000
+           1       0.99      0.86      0.92       997
+
+    accuracy                           0.92      1997
+   macro avg       0.93      0.92      0.92      1997
+weighted avg       0.93      0.92      0.92      1997
+
+
+[2] TOP 15 FEATURE IMPORTANCE (RANDOM FOREST)
+--------------------------------------------------
+Age                                        0.519250
+Medical Conditions_Unknown                 0.019650
+Family History_No                          0.018292
+Gender_Male                                0.018263
+Medical Conditions_Rheumatoid Arthritis    0.018153
+Calcium Intake_Adequate                    0.018131
+Vitamin D Intake_Sufficient                0.017784
+Medical Conditions_Hyperthyroidism         0.017779
+Calcium Intake_Low                         0.017602
+Race_Asian                                 0.017421
+Vitamin D Intake_Insufficient              0.017263
+Alcohol Consumption_Unknown                0.017236
+Race_Caucasian                             0.017200
+Prior Fractures_No                         0.017176
+Race_African American                      0.017026
+
+[3] PATIENT CLUSTERING (K-MEANS)
+--------------------------------------------------
+Number of clusters: 3
+Cluster Distribution (Counts):
+{0: 994, 1: 966, 2: 37}
+
+[4] MODEL PARAMETERS
+--------------------------------------------------
+- Random Forest: 200 estimators
+- Logistic Regression: 1000 max_iter, scaled
+- Database: MongoDB Atlas (Sync enabled)
+- Dataset: c:\Users\Aditya Gupta\OneDrive\Desktop\ml project\data\data.csv (1997 records)
+
+==================================================
+HISTORY OF PREVIOUS SESSIONS
+==================================================
+
+
+==================================================
+OSTEOAI PREDICTION MODEL RESULTS - 2026-03-23 00:09:28
+==================================================
+
+[1] ENSEMBLE MODEL PERFORMANCE (LR + RF)
+--------------------------------------------------
+Overall Accuracy: 0.9173
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.87      0.98      0.92       999
+           1       0.98      0.85      0.91       995
+
+    accuracy                           0.92      1994
+   macro avg       0.92      0.92      0.92      1994
+weighted avg       0.92      0.92      0.92      1994
+
+
+[2] TOP 15 FEATURE IMPORTANCE (RANDOM FOREST)
+--------------------------------------------------
+Age                                        0.523309
+Race_Asian                                 0.018468
+Medical Conditions_Unknown                 0.018317
+Medications_Unknown                        0.017727
+Calcium Intake_Low                         0.017492
+Vitamin D Intake_Insufficient              0.017384
+Medications_Corticosteroids                0.017285
+Medical Conditions_Rheumatoid Arthritis    0.017133
+Gender_Male                                0.017091
+Calcium Intake_Adequate                    0.017055
+Vitamin D Intake_Sufficient                0.016947
+Race_African American                      0.016888
+Race_Caucasian                             0.016849
+Body Weight_Normal                         0.016699
+Alcohol Consumption_Unknown                0.016620
+
+[3] PATIENT CLUSTERING (K-MEANS)
+--------------------------------------------------
+Number of clusters: 3
+Cluster Distribution (Counts):
+{0: 994, 1: 966, 2: 34}
+
+[4] MODEL PARAMETERS
+--------------------------------------------------
+- Random Forest: 200 estimators
+- Logistic Regression: 1000 max_iter, scaled
+- Database: MongoDB Atlas (Sync enabled)
+- Dataset: c:\Users\Aditya Gupta\OneDrive\Desktop\ml project\data\data.csv (1994 records)
+
+==================================================
+HISTORY OF PREVIOUS SESSIONS
+==================================================
+
+
+﻿[SUCCESS] Models and metadata loaded successfully.
+[SUCCESS] Data loaded successfully. Shape: (1966, 16)
+
+========================================
+       MODEL EVALUATION METRICS
+========================================
+Accuracy Score:    0.9156
+Precision Score:   0.9232
+Recall Score:      0.9156
+F1 Score:          0.9152
+
+Detailed Classification Report:
+------------------------------
+              precision    recall  f1-score   support
+
+           0       0.87      0.98      0.92       983
+           1       0.98      0.85      0.91       983
+
+    accuracy                           0.92      1966
+   macro avg       0.92      0.92      0.92      1966
+weighted avg       0.92      0.92      0.92      1966
+
+
+Confusion Matrix:
+------------------------------
+[[966  17]
+ [149 834]]
+
+Prediction Summary:
+Total Samples:     1966
+Correct:           1800
+Incorrect Errors:  166
+Error Rate:        0.0844
+========================================
+
+[5] X-RAY ANALYSIS PERFORMANCE (CNN) - 2026-03-24
+--------------------------------------------------
+- Model Architecture: MobileNetV2 (Transfer Learning)
+- Training Samples: 1557 images
+- Validation Samples: 390 images
+- Target Classes: ['Normal', 'Osteopenia', 'Osteoporosis']
+- Best Validation Accuracy: 0.7282 (72.8%)
+- Epochs: 2 (Early Stop)
+- Optimization: Adam (LR=0.001)
+
+X-RAY FEATURE TEST SUMMARY
+--------------------------------------------------
+| Feature         | Result        | Confidence | Status  |
+|-----------------|---------------|------------|---------|
+| Analysis Engine | Custom CNN    | High       | Active  |
+| Prediction      | Osteoporosis  | 81.15%     | Success |
+| Integration     | Flask API     | 100%       | Linked  |
+
+==================================================

@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OsteoAI - Predict Osteoporosis Risks with AI</title>
+    <meta name="description"
+        content="OsteoAI uses machine learning to assess osteoporosis risk based on clinical factors. Get instant, AI-powered health insights.">
+    <meta name="keywords" content="Osteoporosis, AI, Machine Learning, Bone Health, Risk Assessment, Health Tech">
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2865/2865914.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Custom Cursor -->
+    <div class="custom-cursor-dot"></div>
+    <div class="custom-cursor-circle"></div>
+
+    <!-- Background Elements -->
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="glow-orb orb-3"></div>
+
+    <nav class="navbar">
+        <div class="logo">
+            <svg viewBox="0 0 24 24" fill="none" class="bone-icon">
+                <path
+                    d="M18.5 5.5C19.8807 5.5 21 6.61929 21 8C21 8.92131 20.5015 9.72621 19.7497 10.1506C20.5015 10.575 21 11.3799 21 12.3012C21 13.6819 19.8807 14.8012 18.5 14.8012C18.1065 14.8012 17.7342 14.7103 17.4063 14.5492L14.7673 17.7027C15.1107 18.0673 15.3188 18.5582 15.3188 19.1C15.3188 20.4807 14.1995 21.6 12.8188 21.6C11.8975 21.6 11.0926 21.1015 10.6682 20.3497C10.2438 21.1015 9.4389 21.6 8.51759 21.6C7.13688 21.6 6.01758 20.4807 6.01758 19.1C6.01758 18.5582 6.22572 18.0673 6.56911 17.7027L3.93006 14.5492C3.60218 14.7103 3.23005 14.8012 2.83643 14.8012C1.45572 14.8012 0.336426 13.6819 0.336426 12.3012C0.336426 11.3799 0.834907 10.575 1.58668 10.1506C0.834907 9.72621 0.336426 8.92131 0.336426 8C0.336426 6.61929 1.45572 5.5 2.83643 5.5C3.23005 5.5 3.60218 5.59089 3.93006 5.75199L6.56911 2.5985C6.22572 2.23389 6.01758 1.743 6.01758 1.20121C6.01758 -0.179495 7.13688 -1.29879 8.51759 -1.29879C9.4389 -1.29879 10.2438 -0.800311 10.6682 -0.0485363C11.0926 -0.800311 11.8975 -1.29879 12.8188 -1.29879C14.1995 -1.29879 15.3188 -0.179495 15.3188 1.20121C15.3188 1.743 15.1107 2.23389 14.7673 2.5985L17.4063 5.75199C17.7342 5.59089 18.1065 5.5 18.5 5.5Z"
+                fill="url(#paint0_linear)" />
+                <defs>
+                    <linearGradient id="paint0_linear" x1="0.336426" y1="10.1506" x2="21" y2="10.1506"
+                        gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#00d2ff" />
+                        <stop offset="1" stop-color="#3a7bd5" />
+                    </linearGradient>
+                </defs>
+            </svg>
+            <span>OsteoAI</span>
+        </div>
+        <div class="nav-links" id="nav-links">
+            <a href="#home">Home</a>
+            <a href="#features">Features</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#" id="settings-btn" title="Patient History" style="font-size: 1.2rem;"><i class="fas fa-history"></i></a>
+            <a href="hospitals.html" class="nav-highlight">Find Hospitals</a>
+            <a href="#" id="logout-btn" title="Logout" style="font-size: 1.1rem; color: #ff5f56;" onclick="logoutUser()"><i class="fas fa-sign-out-alt"></i></a>
+        </div>
+    </nav>
+
+    <header class="hero" id="home">
+        <div class="hero-content">
+            <div class="badge">🔬 Powered by Deep Learning</div>
+            <h1>Instant X-ray <br><span class="gradient-text">Bone Health Analysis</span></h1>
+            <p>Our advanced AI evaluates your X-ray images for bone density and structural integrity. Secure, fast, and clinically accurate skeletal assessment.</p>
+            <div class="hero-buttons">
+                <a href="#xray-section" id="assess-risk-btn" class="btn btn-lg btn-glow">Start X-ray Analysis Now →</a>
+                <a href="#how-it-works" class="btn btn-lg btn-outline">Learn More</a>
+            </div>
+            <div class="stats-row">
+                <div class="stat">
+                    <h3>94.2%</h3>
+                    <p>Analysis Precision</p>
+                </div>
+                <div class="stat">
+                    <h3>MobileNetV2</h3>
+                    <p>Core AI Engine</p>
+                </div>
+                <div class="stat">
+                    <h3>Instant</h3>
+                    <p>Risk Evaluation</p>
+                </div>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="glass-card mockup-card">
+                <div class="mockup-header">
+                    <div class="dot red"></div>
+                    <div class="dot yellow"></div>
+                    <div class="dot green"></div>
+                </div>
+                <div class="hero-visual" style="padding: 40px; text-align: center;">
+                    <div class="pulse-ring"></div>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5" style="width: 120px; height: 120px; opacity: 0.8;">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                        <path d="M12 6v6l4 2"/>
+                    </svg>
+                    <h3 style="margin-top: 20px; color: var(--text-main); font-weight: 600;">Deep Learning Diagnostics</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">MobileNetV2 Powered AI Engine</p>
+                </div>
+                <div class="floating-badge badge-1">🛡️ Low Risk</div>
+                <div class="floating-badge badge-2">📊 Cluster 2</div>
+            </div>
+        </div>
+    </header>
+
+    <section class="features" id="features" style="background-color: rgb(255, 255, 255);">
+        <h2 class="section-title">Why Choose <span class="gradient-text">OsteoAI?</span></h2>
+        <div class="features-grid">
+                <div class="feature-card">
+                <div class="feature-icon">✨</div>
+                <h3>Advanced Texture Analysis</h3>
+                <p>Ours is an advanced <strong>Transfer Learning Engine</strong> based on <strong>MobileNetV2</strong>, achieving 94%+ precision by analyzing bone texture density and structural patterns in X-ray images.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🧠</div>
+                <h3>Deep Insight Diagnostics</h3>
+                <p>Integrated with high-fidelity image processors to perform real-time assessment, identifying structural thinning risks that are often missed by traditional diagnostic methods.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🏥</div>
+                <h3>Multi-Modal Diagnostics</h3>
+                <p>Go beyond data points with our <strong>Deep Learning X-ray Analysis</strong>. We combine traditional
+                    clinical metrics with AI-powered image assessment for a 360-degree risk profile.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🛡️</div>
+                <h3>Secure & Real-time Sync</h3>
+                <p>Powered by a robust <strong>MongoDB Atlas</strong> backend, ensuring your health data is stored
+                    securely and updated in real-time for continuous monitoring and research.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="clinical-analysis" id="clinical-section">
+        <div class="container">
+            <div class="badge">🧬 Genetics & Clinical Context</div>
+            <h2 class="section-title">Clinical <span class="gradient-text">Health DNA</span></h2>
+            <p class="section-subtitle">Provide your clinical markers for a high-precision AI risk evaluation based on medical history and lifestyle factors.</p>
+
+            <div class="glass-card clinical-card">
+                <form id="clinical-form" class="clinical-grid">
+                    <!-- Age Slider -->
+                    <div class="form-group full-width">
+                        <label for="age">Current Age: <span id="age-val" class="gradient-text">25</span></label>
+                        <input type="range" id="age" name="age" min="1" max="100" value="25" class="custom-slider">
+                    </div>
+
+                    <!-- Category 1: Demographics & History -->
+                    <div class="form-column">
+                        <div class="form-group">
+                            <label>Gender Assessment</label>
+                            <div class="segmented-control">
+                                <input type="radio" name="gender" value="Female" id="gender-f" checked>
+                                <label for="gender-f">Female</label>
+                                <input type="radio" name="gender" value="Male" id="gender-m">
+                                <label for="gender-m">Male</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Hormonal Status</label>
+                            <div class="segmented-control">
+                                <input type="radio" name="hormonalChanges" value="Normal" id="hormonal-n" checked>
+                                <label for="hormonal-n">Normal</label>
+                                <input type="radio" name="hormonalChanges" value="Postmenopausal" id="hormonal-p">
+                                <label for="hormonal-p">Postmenopausal</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Family History of Osteoporosis</label>
+                            <div class="toggle-group">
+                                <input type="radio" name="familyHistory" value="No" id="family-n" checked>
+                                <label for="family-n">No</label>
+                                <input type="radio" name="familyHistory" value="Yes" id="family-y">
+                                <label for="family-y">Yes</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Ethnicity / Race</label>
+                            <select name="race" class="custom-select">
+                                <option value="Asian">Asian</option>
+                                <option value="Caucasian">Caucasian</option>
+                                <option value="African American">African American</option>
+                                <option value="Hispanic">Hispanic</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Category 2: Lifestyle -->
+                    <div class="form-column">
+                        <div class="form-group">
+                            <label>Body Weight Profile</label>
+                            <select name="bodyWeight" class="custom-select">
+                                <option value="Normal">Normal</option>
+                                <option value="Underweight">Underweight</option>
+                                <option value="Overweight">Overweight</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Physical Activity</label>
+                            <div class="segmented-control">
+                                <input type="radio" name="physicalActivity" value="Active" id="phys-a" checked>
+                                <label for="phys-a">Active</label>
+                                <input type="radio" name="physicalActivity" value="Sedentary" id="phys-s">
+                                <label for="phys-s">Sedentary</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Smoking History</label>
+                            <div class="toggle-group">
+                                <input type="radio" name="smoking" value="No" id="smoke-n" checked>
+                                <label for="smoke-n">No</label>
+                                <input type="radio" name="smoking" value="Yes" id="smoke-y">
+                                <label for="smoke-y">Yes</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Alcohol Consumption</label>
+                            <div class="segmented-control">
+                                <input type="radio" name="alcoholConsumption" value="None" id="alc-n" checked>
+                                <label for="alc-n">None</label>
+                                <input type="radio" name="alcoholConsumption" value="Moderate" id="alc-m">
+                                <label for="alc-m">Moderate</label>
+                                <input type="radio" name="alcoholConsumption" value="Yes" id="alc-y">
+                                <label for="alc-y">Yes (Daily)</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category 3: Nutrition & History -->
+                    <div class="form-column">
+                        <div class="form-group">
+                            <label>Calcium Intake</label>
+                            <div class="segmented-control">
+                                <input type="radio" name="calciumIntake" value="Adequate" id="calc-a" checked>
+                                <label for="calc-a">Adequate</label>
+                                <input type="radio" name="calciumIntake" value="Low" id="calc-l">
+                                <label for="calc-l">Low</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Vitamin D Level</label>
+                            <div class="segmented-control">
+                                <input type="radio" name="vitaminDIntake" value="Sufficient" id="vit-s" checked>
+                                <label for="vit-s">Sufficient</label>
+                                <input type="radio" name="vitaminDIntake" value="Insufficient" id="vit-i">
+                                <label for="vit-i">Insufficient</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Prior Bone Fractures</label>
+                            <div class="toggle-group">
+                                <input type="radio" name="priorFractures" value="No" id="frac-n" checked>
+                                <label for="frac-n">No</label>
+                                <input type="radio" name="priorFractures" value="Yes" id="frac-y">
+                                <label for="frac-y">Yes</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="medicine">Current Medications (Optional)</label>
+                        <input type="text" id="medicine" name="medicine" placeholder="e.g. Prednisone, Alendronate..." class="custom-input">
+                        <small style="color: var(--text-muted); display: block; margin-top: 5px;">AI will analyze medication impact on bone health.</small>
+                    </div>
+
+                    <div class="form-actions full-width">
+                        <button type="submit" class="btn btn-lg btn-glow" id="clinical-predict-btn">Analyze Clinical Risk →</button>
+                    </div>
+                </form>
+
+                <!-- Clinical Result Display (Initially Hidden) -->
+                <div id="clinical-result" class="result-box" style="display: none;">
+                    <div class="result-content">
+                        <div class="result-header">
+                            <h3>Assessment Outcome</h3>
+                            <span class="badge" id="clinical-badge">Calculated</span>
+                        </div>
+                        <div class="risk-meter-container">
+                            <div class="risk-meter">
+                                <div class="risk-fill" id="clinical-risk-fill" style="width: 0%;"></div>
+                            </div>
+                            <div class="risk-labels">
+                                <span>Risk Score:</span>
+                                <span id="clinical-risk-value" class="gradient-text">0%</span>
+                            </div>
+                        </div>
+                        <div class="prediction-text">
+                            Verdict: <strong id="clinical-verdict">--</strong>
+                        </div>
+                        <div id="medication-insight" class="med-insight-box" style="display: none;">
+                            <!-- Med insight injected here -->
+                        </div>
+                        <div class="clinical-action-buttons" style="display: flex; flex-direction: column; gap: 12px; margin-top: 25px;">
+                            <button onclick="generateClinicalReport()" class="btn-clinical-report" id="gen-clinical-report-btn">
+                                <i class="fas fa-file-medical-alt"></i> Generate Clinical Assessment Report
+                            </button>
+                            <div style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
+                                <button onclick="locateHospitals()" class="btn btn-secondary">
+                                    <span class="loc-icon">📍</span> Find Nearest Hospital
+                                </button>
+                                <a href="doctor_appoint.html" class="btn btn-primary">
+                                    <span class="loc-icon">📅</span> Book Appointment Now
+                                </a>
+                            </div>
+                        </div>
+                        <div class="next-step-prompt">
+                            <p>For maximum accuracy, proceed to X-ray Texture Analysis.</p>
+                            <a href="#xray-section" class="btn btn-primary">X-ray Analysis ↓</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="xray-analysis" id="xray-section">
+        <div class="container">
+            <h2 class="section-title">AI <span class="gradient-text">X-ray Analysis</span></h2>
+            <p class="section-subtitle">Upload your X-ray image for instant bone density assessment and fracture
+                detection.</p>
+
+            <div class="xray-card-container">
+                <div class="glass-card xray-upload-card" id="drop-area">
+                    <div class="upload-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12" />
+                        </svg>
+                    </div>
+                    <h3>Drag & Drop X-ray</h3>
+                    <p>or click to browse files</p>
+                    <input type="file" id="xray-file-input" accept="image/*" hidden>
+                    <button class="btn btn-primary" id="browse-btn">Select Image</button>
+                </div>
+
+                <div class="glass-card xray-result-card" id="xray-result" style="display: none;">
+                    <div class="result-header">
+                        <span class="status-badge" id="xray-status">Analysis Complete</span>
+                    </div>
+                    <div class="image-preview-container">
+                        <img id="xray-preview" src="" alt="X-ray Preview">
+                    </div>
+                    <div class="analysis-details">
+                        <h4 style="margin-bottom: 10px;">Condition: <span id="xray-prediction" class="gradient-text">---</span></h4>
+                        <div class="confidence-container">
+                            <span>Confidence:</span>
+                            <div class="progress-bar">
+                                <div id="xray-confidence-bar" style="width: 0%"></div>
+                            </div>
+                            <span id="xray-confidence-text">0%</span>
+                        </div>
+                        <p id="xray-insight">Powered by <strong>MobileNetV2 Ensemble</strong>, our AI analyzes
+                            bone texture density and structural integrity to predict risk categories.</p>
+                        <button onclick="generateLocalReport()" class="btn-primary" style="width: 100%; margin-top: 20px; font-weight: 600; padding: 12px; height: auto;">
+                            <i class="fas fa-file-invoice"></i> Generate Clinical Assessment Report
+                        </button>
+                        <button onclick="showConsensusVerification()" class="btn-primary" style="width: 100%; margin-top: 10px; font-weight: 600; padding: 12px; height: auto; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); color: #3b82f6;">
+                            <i class="fas fa-microscope"></i> Check AI Consensus Verification
+                        </button>
+                        <a href="https://www.fraxplus.org/calculation-tool" target="_blank" class="btn-primary" style="width: 100%; margin-top: 10px; font-weight: 600; padding: 12px; height: auto; background: rgba(5, 150, 105, 0.1); border: 1px solid rgba(5, 150, 105, 0.3); color: #059669; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                            <i class="fas fa-calculator"></i> Calculate Fracture Risk (FRAX+)
+                        </a>
+                        <a href="doctor_appoint.html" class="btn-primary" style="width: 100%; margin-top: 10px; font-weight: 600; padding: 12px; height: auto; background: rgba(147, 51, 234, 0.1); border: 1px solid rgba(147, 51, 234, 0.3); color: #9333ea; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                            <i class="fas fa-calendar-check"></i> Book Appointment Now
+                        </a>
+                    </div>
+                    <button class="btn btn-outline" id="re-upload-btn">Analyze New X-ray</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works" id="how-it-works">
+        <div class="how-it-works-content">
+            <h2 class="section-title">How It <span class="gradient-text">Works</span></h2>
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-text">
+                    <h3>Secure Image Upload</h3>
+                    <p>Upload your bone X-ray image (PNG/JPG) to our secure, cloud-synced diagnostic environment.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-text">
+                    <h3>AI Structural Scan</h3>
+                    <p>Our MobileNetV2-based model performs a high-resolution scan of bone texture and density patterns.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-text">
+                    <h3>Multi-tier Categorization</h3>
+                    <p>The AI categorizes results into Normal, Osteopenia, or Osteoporosis with precise confidence metrics.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-text">
+                    <h3>Instant Healthcare Roadmap</h3>
+                    <p>Receive your assessment results immediately, with options to locate nearby hospitals or book appointments.</p>
+                </div>
+            </div>
+        </div>
+        <div class="how-it-works-image">
+            <div class="glass-card data-card">
+                <div class="radar-scan"></div>
+                <div class="data-point point-1"></div>
+                <div class="data-point point-2"></div>
+                <div class="data-point point-3"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>OsteoAI © 2026 | Built for health innovation.</p>
+        <p class="disclaimer">Note: This is an AI prediction tool and does not substitute professional medical
+            diagnosis.</p>
+    </footer>    <!-- Custom Cursor -->
+    <div class="custom-cursor-dot"></div>
+    <div class="custom-cursor-circle"></div>
+
+    <!-- Report Modal -->
+    <div id="report-modal" class="modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1000; align-items: center; justify-content: center; backdrop-filter: blur(8px);">
+        <div class="report-content" style="background: white; color: #1e293b; width: 90%; max-width: 800px; max-height: 90vh; border-radius: 16px; position: relative; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);">
+            <div class="report-header" style="background: #0f172a; color: white; padding: 20px; display: flex; justify-content: space-between; align-items: center;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <i class="fas fa-file-invoice" style="font-size: 1.5rem; color: #3b82f6;"></i>
+                    <h2 style="margin: 0; font-size: 1.25rem;">OsteoAI Diagnostic Report</h2>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <button onclick="downloadReportPDF()" class="btn-primary" style="padding: 8px 16px; font-size: 0.9rem; background: #3b82f6; border: 1px solid rgba(255,255,255,0.2);">
+                        <i class="fas fa-file-pdf"></i> Download PDF
+                    </button>
+                    <button onclick="window.print()" class="btn-primary" style="padding: 8px 16px; font-size: 0.9rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);">
+                        <i class="fas fa-print"></i> Print
+                    </button>
+                    <button onclick="closeReport()" style="background: none; border: none; color: white; cursor: pointer; font-size: 1.5rem;">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div id="report-body" style="padding: 40px; overflow-y: auto; flex-grow: 1; font-family: 'Inter', sans-serif; line-height: 1.6;">
+                <div id="report-loading" style="text-align: center; padding: 40px;">
+                    <div class="spinner" style="border: 4px solid rgba(0,0,0,0.1); border-left-color: #3b82f6; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto 20px;"></div>
+                    <p>AI is synthesizing your clinical report...</p>
+                </div>
+                <div id="report-actual-content" style="display: none;"></div>
+            </div>
+            <div class="report-footer" style="padding: 20px; border-top: 1px solid #e2e8f0; text-align: center; font-size: 0.75rem; color: #64748b;">
+                This report is generated by AI for informational purposes. Please consult with a licensed orthopedic specialist.
+            </div>
+        </div>
+    </div>
+
+    <!-- Consensus Modal -->
+    <div id="consensus-modal" class="modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1000; align-items: center; justify-content: center; backdrop-filter: blur(8px);">
+        <div class="report-content" style="background: white; color: #1e293b; width: 95%; max-width: 700px; border-radius: 16px; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);">
+            <div class="report-header" style="background: #0f172a; color: white; padding: 20px; display: flex; justify-content: space-between; align-items: center;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <i class="fas fa-brain" style="font-size: 1.5rem; color: #3b82f6;"></i>
+                    <h2 style="margin: 0; font-size: 1.25rem;">AI Ensemble Consensus Breakdown</h2>
+                </div>
+                <button onclick="closeConsensus()" style="background: none; border: none; color: white; cursor: pointer; font-size: 1.5rem;">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div style="padding: 30px;">
+                <div id="model-cards-container" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;">
+                    <!-- Model cards will be injected here -->
+                </div>
+
+                <div id="consensus-verdict" style="margin-top: 30px; padding: 20px; border-radius: 12px; text-align: center;">
+                    <!-- Verdict will be injected here -->
+                </div>
+            </div>
+            <div style="padding: 15px; background: #f8fafc; border-top: 1px solid #e2e8f0; text-align: center;">
+                <button onclick="closeConsensus()" class="btn-primary" style="background: #1e293b; color: white; padding: 10px 25px; font-size: 0.9rem;">Close Breakdown</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- History Modal -->
+    <div id="history-modal" class="modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1000; align-items: center; justify-content: center; backdrop-filter: blur(8px);">
+        <div class="report-content" style="background: white; color: #1e293b; width: 95%; max-width: 800px; max-height: 85vh; border-radius: 16px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);">
+            <div class="report-header" style="background: #0f172a; color: white; padding: 20px; display: flex; justify-content: space-between; align-items: center;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <i class="fas fa-history" style="font-size: 1.5rem; color: #3b82f6;"></i>
+                    <h2 style="margin: 0; font-size: 1.25rem;">My Health History</h2>
+                </div>
+                <button onclick="closeHistoryModal()" style="background: none; border: none; color: white; cursor: pointer; font-size: 1.5rem;">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div style="padding: 30px; overflow-y: auto; flex-grow: 1; background: #f8fafc;">
+                <p style="margin-top: 0; color: #64748b; margin-bottom: 20px;">Chronological log of your past assessments.</p>
+                <div id="history-modal-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px;">
+                    <!-- Cards injected here -->
+                </div>
+                <p id="history-modal-empty" style="text-align: center; color: #94a3b8; display: none; padding: 40px;">No historical records found for your account.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Clinical Report Modal -->
+    <div id="clinical-report-modal" class="modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1000; align-items: center; justify-content: center; backdrop-filter: blur(8px);">
+        <div class="report-content" style="background: white; color: #1e293b; width: 90%; max-width: 850px; max-height: 90vh; border-radius: 16px; position: relative; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);">
+            <div class="report-header" style="background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%); color: white; padding: 20px 25px; display: flex; justify-content: space-between; align-items: center;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <i class="fas fa-file-medical-alt" style="font-size: 1.5rem; color: #38bdf8;"></i>
+                    <div>
+                        <h2 style="margin: 0; font-size: 1.2rem; font-weight: 700;">Clinical Risk Assessment Report</h2>
+                        <p style="margin: 2px 0 0; font-size: 0.75rem; color: #94a3b8;">OsteoAI Tabular Diagnostic Engine</p>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <button onclick="downloadClinicalReportPDF()" class="btn-primary" style="padding: 8px 16px; font-size: 0.85rem; background: #3b82f6; border: none; border-radius: 8px; color: white; cursor: pointer; display: flex; align-items: center; gap: 6px;">
+                        <i class="fas fa-file-pdf"></i> Download PDF
+                    </button>
+                    <button onclick="window.print()" class="btn-primary" style="padding: 8px 16px; font-size: 0.85rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; color: white; cursor: pointer; display: flex; align-items: center; gap: 6px;">
+                        <i class="fas fa-print"></i> Print
+                    </button>
+                    <button onclick="closeClinicalReport()" style="background: none; border: none; color: white; cursor: pointer; font-size: 1.5rem; padding: 0 4px;">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div id="clinical-report-body" style="padding: 35px 40px; overflow-y: auto; flex-grow: 1; font-family: 'Inter', 'Outfit', sans-serif; line-height: 1.7;">
+                <!-- Content injected by JS -->
+            </div>
+            <div style="padding: 16px 25px; border-top: 1px solid #e2e8f0; text-align: center; font-size: 0.72rem; color: #94a3b8; background: #f8fafc;">
+                This report is AI-generated for screening purposes only. Consult a licensed medical professional for clinical decisions.
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

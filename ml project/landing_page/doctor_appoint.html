@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OsteoAI - Book Appointment</title>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2865/2865914.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Background Elements -->
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="glow-orb orb-3"></div>
+
+    <nav class="navbar">
+        <div class="logo">
+            <svg viewBox="0 0 24 24" fill="none" class="bone-icon">
+                <path d="M18.5 5.5C19.8807 5.5 21 6.61929 21 8C21 8.92131 20.5015 9.72621 19.7497 10.1506C20.5015 10.575 21 11.3799 21 12.3012C21 13.6819 19.8807 14.8012 18.5 14.8012C18.1065 14.8012 17.7342 14.7103 17.4063 14.5492L14.7673 17.7027C15.1107 18.0673 15.3188 19.1C15.3188 20.4807 14.1995 21.6 12.8188 21.6C11.8975 21.6 11.0926 21.1015 10.6682 20.3497C10.2438 21.1015 9.4389 21.6 8.51759 21.6C7.13688 21.6 6.01758 20.4807 6.01758 19.1C6.01758 18.5582 6.22572 18.0673 6.56911 17.7027L3.93006 14.5492C3.60218 14.7103 3.23005 14.8012 2.83643 14.8012C1.45572 14.8012 0.336426 13.6819 0.336426 12.3012C0.336426 11.3799 0.834907 10.575 1.58668 10.1506C0.834907 9.72621 0.336426 8.92131 0.336426 8C0.336426 6.61929 1.45572 5.5 2.83643 5.5C3.23005 5.5 3.60218 5.59089 3.93006 5.75199L6.56911 2.5985C6.22572 2.23389 6.01758 1.743 6.01758 1.20121C6.01758 -0.179495 7.13688 -1.29879 8.51759 -1.29879C9.4389 -1.29879 10.2438 -0.800311 10.6682 -0.0485363C11.0926 -0.800311 11.8975 -1.29879 12.8188 -1.29879C14.1995 -1.29879 15.3188 -0.179495 15.3188 1.20121C15.3188 1.743 15.1107 2.23389 14.7673 2.5985L17.4063 5.75199C17.7342 5.59089 18.1065 5.5 18.5 5.5Z" fill="url(#paint0_linear)" />
+                <defs>
+                    <linearGradient id="paint0_linear" x1="0.336426" y1="10.1506" x2="21" y2="10.1506" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#00d2ff" />
+                        <stop offset="1" stop-color="#3a7bd5" />
+                    </linearGradient>
+                </defs>
+            </svg>
+            <span>OsteoAI</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="hospitals.html" class="nav-highlight">Find Hospitals</a>
+        </div>
+    </nav>
+
+    <header class="hero" style="min-height: 100vh; display: flex; justify-content: center; align-items: center; padding-top: 120px;">
+        <div class="glass-card" style="padding: 40px; width: 100%; max-width: 600px;">
+            <h2 class="gradient-text" style="text-align: center; margin-bottom: 20px; font-size: 2rem;">Book Appointment</h2>
+            <p style="text-align: center; margin-bottom: 30px; font-size: 1rem;">Schedule a consultation with a specialist.</p>
+            
+            <form id="appointment-form" class="skeleton-ui actual-form">
+                <div class="form-row">
+                    <input type="text" id="patient_name" placeholder="Full Name" required>
+                </div>
+                <div class="form-row">
+                    <input type="email" id="patient_email" placeholder="Email Address" required>
+                    <input type="tel" id="patient_phone" placeholder="Phone Number" required>
+                </div>
+                <div class="form-row">
+                    <select id="specialist_type" required>
+                        <option value="" disabled selected>Select Specialist</option>
+                        <option>Orthopedist</option>
+                        <option>Endocrinologist</option>
+                        <option>Rheumatologist</option>
+                        <option>General Physician</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <input type="date" id="appointment_date" required style="color-scheme: dark;">
+                    <input type="time" id="appointment_time" required style="color-scheme: dark;">
+                </div>
+                <div class="form-row">
+                    <textarea id="additional_notes" placeholder="Any additional notes or symptoms?" rows="3" style="width: 100%; background: var(--surface); border: 1px solid var(--surface-border); border-radius: 8px; color: var(--text-main); padding: 10px; font-size: 0.82rem; outline: none; resize: vertical;"></textarea>
+                </div>
+                
+                <button type="submit" class="skeleton-button" id="book-btn" style="margin-top: 20px;">Confirm Booking</button>
+            </form>
+            
+            <div id="booking-success" style="display:none; text-align:center; margin-top: 20px; padding: 15px; background: rgba(39, 201, 63, 0.1); border: 1px solid #27c93f; border-radius: 8px;">
+                <h4 style="color: #27c93f; margin-bottom: 10px;">Booking Confirmed!</h4>
+                <p style="font-size: 0.9rem; color: var(--text-main);">Your appointment has been scheduled successfully. We will send you an email confirmation shortly.</p>
+                <a href="index.html" class="btn btn-sm btn-outline" style="margin-top: 15px;">Return to Dashboard</a>
+            </div>
+        </div>
+    </header>
+
+    <footer class="footer">
+        <p>OsteoAI © 2026 | Built for health innovation.</p>
+    </footer>
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor-dot"></div>
+    <div class="custom-cursor-circle"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Auto-fill from localStorage if available
+            const username = localStorage.getItem('username') || localStorage.getItem('email');
+            if (username && !username.includes('@')) {
+                document.getElementById('patient_name').value = username;
+            } else if (username && username.includes('@')) {
+                document.getElementById('patient_email').value = username;
+            }
+
+            // Handle Form Submission
+            const form = document.getElementById('appointment-form');
+            const submitBtn = document.getElementById('book-btn');
+            const successDiv = document.getElementById('booking-success');
+
+            if (form) {
+                form.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    
+                    submitBtn.textContent = 'Processing...';
+                    submitBtn.disabled = true;
+
+                    const appointmentData = {
+                        patient_name: document.getElementById('patient_name').value,
+                        patient_email: document.getElementById('patient_email').value,
+                        patient_phone: document.getElementById('patient_phone').value,
+                        specialist_type: document.getElementById('specialist_type').value,
+                        appointment_date: document.getElementById('appointment_date').value,
+                        appointment_time: document.getElementById('appointment_time').value,
+                        additional_notes: document.getElementById('additional_notes').value
+                    };
+
+                    try {
+                        const response = await fetch('/book_appointment', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(appointmentData)
+                        });
+
+                        const result = await response.json();
+
+                        if (result.status === 'success') {
+                            form.style.display = 'none';
+                            successDiv.style.display = 'block';
+                        } else {
+                            alert('Booking failed: ' + result.message);
+                            submitBtn.textContent = 'Confirm Booking';
+                            submitBtn.disabled = false;
+                        }
+                    } catch (error) {
+                        alert('An error occurred during booking. Please try again.');
+                        console.error('Booking Error:', error);
+                        submitBtn.textContent = 'Confirm Booking';
+                        submitBtn.disabled = false;
+                    }
+                });
+            }
+
+            // --- Custom Cursor Logic ---
+            const cursorDot = document.querySelector('.custom-cursor-dot');
+            const cursorCircle = document.querySelector('.custom-cursor-circle');
+            
+            let mouseX = 0, mouseY = 0;
+            let circleX = 0, circleY = 0;
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                
+                cursorDot.style.left = `${mouseX}px`;
+                cursorDot.style.top = `${mouseY}px`;
+            });
+
+            function animateCursor() {
+                let distX = mouseX - circleX;
+                let distY = mouseY - circleY;
+                
+                circleX = circleX + (distX * 0.15);
+                circleY = circleY + (distY * 0.15);
+                
+                cursorCircle.style.left = `${circleX}px`;
+                cursorCircle.style.top = `${circleY}px`;
+                
+                requestAnimationFrame(animateCursor);
+            }
+            
+            animateCursor();
+
+            const interactables = document.querySelectorAll('a, button, input, select, textarea, .btn');
+            interactables.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursorDot.classList.add('hovered');
+                    cursorCircle.classList.add('hovered');
+                });
+                el.addEventListener('mouseleave', () => {
+                    cursorDot.classList.remove('hovered');
+                    cursorCircle.classList.remove('hovered');
+                });
+            });
+        });
+    </script>
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor-dot"></div>
+    <div class="custom-cursor-circle"></div>
+</body>
+</html>

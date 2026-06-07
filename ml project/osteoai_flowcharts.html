@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OsteoAI Flowcharts Viewer</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: #f4f6f9; 
+            color: #333; 
+            margin: 0; 
+            padding: 20px; 
+        }
+        .container { 
+            max-width: 1000px; 
+            margin: auto; 
+            background: white; 
+            padding: 40px; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+        }
+        h1 { 
+            text-align: center; 
+            color: #2c3e50; 
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        h2 { 
+            color: #34495e; 
+            margin-top: 40px;
+            text-align: center;
+        }
+        .mermaid { 
+            display: flex; 
+            justify-content: center; 
+            margin: 30px 0; 
+            background: #fafafa;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #eaeaea;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>OsteoAI Architecture & User Journey</h1>
+        
+        <h2>1. Technical Architecture Flow</h2>
+        <div class="mermaid">
+graph TD
+    %% Nodes
+    User((User))
+    Web[Frontend: HTML/CSS/JS]
+    Flask[Flask Backend: api.py]
+    Auth[Auth Handler: auth.py]
+    DB[(MongoDB Atlas)]
+    CSV[(Local Storage: data.csv)]
+    
+    subgraph AI_Intelligence_Layer [AI Intelligence Layer]
+        ML[Ensemble ML: LR + RandomForest]
+        Gemini[Google Gemini API: Medicine Decoding]
+        DL[Deep Learning: MobileNetV2 X-ray Model]
+    end
+
+    %% Flow
+    User -->|Interacts| Web
+    Web -->|POST /login| Flask
+    Flask -->|Verify Credentials| Auth
+    Auth <-->|Query| DB
+
+    Web -->|POST /predict| Flask
+    Flask -->|Normalize Data| ML
+    Flask -.->|Analyze Meds| Gemini
+    Flask -->|Store Result| DB
+    Flask -->|Append Row| CSV
+    
+    Web -->|POST /analyze-xray| Flask
+    Flask -->|Process Image| DL
+    
+    Flask -->|Return JSON| Web
+    Web -->|Display Results| User
+        </div>
+
+        <h2>2. Detailed User Journey</h2>
+        <div class="mermaid">
+sequenceDiagram
+    participant U as User / Patient
+    participant F as Frontend (OsteoAI UI)
+    participant B as Backend (Flask)
+    participant G as Gemini AI
+    participant M as ML Models
+    participant D as Doctor Dashboard
+
+    %% Registration
+    U->>F: Register / Login
+    F->>B: Auth Request
+    B-->>F: JWT / Success Session
+
+    %% Risk Assessment
+    U->>F: Fill Clinical Metrics Form
+    U->>F: (Optional) Upload X-ray
+    F->>B: Send Data & Image
+    
+    par Clinical Analysis
+        B->>M: Process Metrics (Ensemble)
+        M-->>B: Risk Probability %
+    and Medication Insight
+        B->>G: Medication Name
+        G-->>B: Bone Health Risks
+    and Image Analysis
+        B->>M: CNN (MobileNetV2)
+        M-->>B: Scan Result (Normal/Osteopenia)
+    end
+    
+    B-->>F: Consolidated Health Report
+    F->>U: Show Dashboard & Recommendations
+
+    %% Appointment
+    U->>F: Book Appointment
+    F->>B: Store Appointment
+    B-->>D: Update Doctor UI (Real-time)
+        </div>
+    </div>
+</body>
+</html>
